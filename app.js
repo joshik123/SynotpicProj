@@ -1,7 +1,7 @@
 const express = require('express');
 const app = express();
 const port = 3000;
-
+const { MongoClient } = require('mongodb');
 const fs = require('fs');
 const bodyParser = require('body-parser');
 
@@ -88,11 +88,40 @@ app.listen(port, ()=> {
 
 
 
+// Replace with your MongoDB connection string
+const uri = 'your_mongodb_connection_string_here';
 
+// Replace with your database and collection names
+const dbName = 'your_database_name';
+const collectionName = 'users';
 
+const bcrypt = require('bcrypt');
 
+async function signupUser(userData) {
+    const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
 
+    try {
+        // Hash the password
+        const hashedPassword = await bcrypt.hash(userData.password, 10);
+        userData.password = hashedPassword;
 
+        // Connect to the MongoDB cluster
+        await client.connect();
+
+        // Select the database and collection
+        const db = client.db(dbName);
+        const collection = db.collection(collectionName);
+
+        // Insert the new user data
+        const result = await collection.insertOne(userData);
+        console.log(`New user inserted with the following id: ${result.insertedId}`);
+    } catch (err) {
+        console.error('Error inserting user:', err);
+    } finally {
+        // Close the connection to the database
+        await client.close();
+    }
+}
 
 
 
