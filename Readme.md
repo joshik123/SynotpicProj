@@ -13,8 +13,6 @@ SynotpicProj/
     ├── node_modules
     ├── public/
     │   └── # This is for static pages visible to users
-    ├── src/
-    │   └── # This is for files that handle the server
     ├── app.js
     ├── package-lock.json
     ├── package.json
