@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Shop - Charity Shop</title>
-    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/shop.css">
 </head>
 <body>
     <header>
@@ -25,6 +25,10 @@
             <div class="search-bar">
                 <input type="text" placeholder="Search...">
             </div>
+            <div class="cart-icon">
+                <img src="images/cart.png" alt="Shopping Cart" id="cart-icon">
+                <span id="cart-count">0</span>
+            </div>
         </div>
     </header>
 
@@ -33,27 +37,32 @@
             <h2>Shop</h2>
             <div class="product-grid">
                 <div class="product-item">
-                    <img src="images/product1.jpg" alt="Product 1">
+                    <img src="images/sweetcorn.png" alt="Product 1">
                     <h3>Product 1</h3>
                     <p>$10.00</p>
-                    <button>Add to Cart</button>
+                    <button class="add-to-cart" data-name="Product 1" data-price="10.00">Add to Cart</button>
                 </div>
                 <!-- Add more products as needed -->
             </div>
         </div>
     </section>
-
     <footer>
         <div class="container">
             <p>&copy; 2024 Charity Shop. All rights reserved.</p>
             <div class="social-media">
-                <a href="#">Facebook</a>
-                <a href="#">Twitter</a>
-                <a href="#">Instagram</a>
+                <a href="#" aria-label="Facebook">
+                    <img src="images/facebook.png" alt="Facebook">
+                </a>
+                <a href="#" aria-label="Twitter">
+                    <img src="images/twitter.png" alt="Twitter">
+                </a>
+                <a href="#" aria-label="Instagram">
+                    <img src="images/instagram.png" alt="Instagram">
+                </a>
             </div>
         </div>
     </footer>
 
-    <script src="js/scripts.js"></script>
+    <script src="js/shop.js"></script>
 </body>
 </html>

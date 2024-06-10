@@ -5,6 +5,56 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contact Us - Charity Shop</title>
     <link rel="stylesheet" href="css/styles.css">
+    <style>
+        /* Additional Styles */
+        #contact {
+            padding: 60px 0;
+        }
+
+        #contact h2 {
+            margin-bottom: 30px;
+            font-size: 2.5em;
+            color: #333;
+            text-align: center;
+        }
+
+        #contact form {
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        #contact input[type="text"],
+        #contact input[type="email"],
+        #contact textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 1em;
+        }
+
+        #contact textarea {
+            height: 150px;
+        }
+
+        #contact button[type="submit"] {
+            display: block;
+            width: 100%;
+            padding: 15px;
+            background-color: #ff6600;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            font-size: 1.2em;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        #contact button[type="submit"]:hover {
+            background-color: #cc5200;
+        }
+    </style>
 </head>
 <body>
     <header>
@@ -31,26 +81,35 @@
     <section id="contact">
         <div class="container">
             <h2>Contact Us</h2>
-            <form>
-                <input type="text" placeholder="Your Name">
-                <input type="email" placeholder="Your Email">
-                <textarea placeholder="Your Message"></textarea>
+            <form id="contact-form">
+                <input type="text" placeholder="Your Name" required>
+                <input type="email" placeholder="Your Email" required>
+                <textarea placeholder="Your Message" required></textarea>
                 <button type="submit">Send</button>
             </form>
         </div>
     </section>
 
+    <!-- Footer Section -->
     <footer>
         <div class="container">
             <p>&copy; 2024 Charity Shop. All rights reserved.</p>
             <div class="social-media">
-                <a href="#">Facebook</a>
-                <a href="#">Twitter</a>
-                <a href="#">Instagram</a>
+                <!-- Ensure the paths to the social media icons are correct -->
+                <a href="#" aria-label="Facebook">
+                    <img src="images/facebook.png" alt="Facebook" style="width:24px; height:24px;">
+                </a>
+                <a href="#" aria-label="Twitter">
+                    <img src="images/twitter.png" alt="Twitter" style="width:24px; height:24px;">
+                </a>
+                <a href="#" aria-label="Instagram">
+                    <img src="images/instagram.png" alt="Instagram" style="width:24px; height:24px;">
+                </a>
             </div>
         </div>
     </footer>
 
-    <script src="js/scripts.js"></script>
+    <!-- Scripts -->
+    <script src="js/contact.js"></script>
 </body>
 </html>
