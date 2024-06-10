@@ -1,19 +1,31 @@
+/* General Styles */
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'Helvetica Neue', Arial, sans-serif; /* Use a modern, clean font */
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
+    box-sizing: border-box; /* Ensure consistent box-sizing for all elements */
+    line-height: 1.6; /* Improve readability with increased line height */
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: inherit; /* Apply box-sizing to all elements */
 }
 
 .container {
-    width: 80%;
+    width: 90%; /* Increase width to 90% for better content fit */
+    max-width: 1200px; /* Maintain a maximum width for larger screens */
     margin: 0 auto;
+    padding: 0 20px; /* Add some padding to the sides */
 }
 
+/* Header Styles */
 header {
-    background-color: #333;
-    color: white;
-    padding: 10px 0;
+    background-color: #444; /* Slightly lighter shade for better contrast */
+    color: #fff;
+    padding: 15px 0; /* Increased padding for better spacing */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Add subtle shadow for depth */
 }
 
 header .container {
@@ -22,88 +34,197 @@ header .container {
     align-items: center;
 }
 
-header .logo {
-    font-size: 24px;
+header .logo img {
+    max-width: 150px; /* Restrict logo size */
+    height: auto;
 }
 
 header nav ul {
     list-style: none;
     display: flex;
-    gap: 15px;
-}
-
-header nav ul li {
+    gap: 20px; /* Increase gap for better spacing between items */
     margin: 0;
+    padding: 0;
 }
 
 header nav ul li a {
-    color: white;
+    color: #fff;
     text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s; /* Smooth transition on hover */
+}
+
+header nav ul li a:hover {
+    color: #ff6600; /* Change color on hover */
 }
 
 header .search-bar input {
-    padding: 5px;
+    padding: 7px;
+    border: 1px solid #ccc;
+    border-radius: 4px; /* Slightly rounded corners for the search bar */
 }
 
+/* Banner Section */
 .banner {
-    background: url('banner.jpg') no-repeat center center/cover;
+    background: url('images/banner.jpg') no-repeat center center/cover;
     text-align: center;
     color: white;
-    padding: 100px 0;
+    padding: 120px 0; /* Increased padding for a more pronounced banner */
+    position: relative; /* Relative positioning for text overlay */
+}
+
+.banner::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5); /* Dark overlay for better text readability */
+    z-index: 1;
+}
+
+.banner h1, .banner p {
+    position: relative; /* Ensure text is above the overlay */
+    z-index: 2;
+    margin: 0;
 }
 
 .banner h1 {
     font-size: 48px;
-    margin: 0;
+    margin-bottom: 10px;
 }
 
 .banner p {
     font-size: 24px;
+    margin-bottom: 20px;
 }
 
 .banner .btn {
     background-color: #ff6600;
     color: white;
-    padding: 10px 20px;
+    padding: 12px 25px;
     margin: 10px;
     text-decoration: none;
+    border-radius: 5px; /* Rounded corners for buttons */
+    font-weight: bold;
+    transition: background-color 0.3s; /* Smooth transition on hover */
 }
 
+.banner .btn:hover {
+    background-color: #cc5200; /* Darker shade on hover */
+}
+
+/* Section Styles */
 section {
     padding: 50px 0;
 }
 
 section h2 {
     text-align: center;
-    margin-bottom: 20px;
+    margin-bottom: 30px; /* Increased margin for better spacing */
+    font-size: 2em;
 }
 
+/* Featured Products Section */
 .product-grid {
     display: flex;
     flex-wrap: wrap;
-    gap: 20px;
+    gap: 30px; /* Increased gap for better spacing */
+    justify-content: center; /* Center the product items */
 }
 
 .product-item {
-    width: calc(33.333% - 20px);
-    border: 1px solid #ccc;
-    padding: 10px;
+    width: calc(33.333% - 30px); /* Adjust width to accommodate new gap */
+    border: 1px solid #e0e0e0;
+    padding: 15px;
     text-align: center;
+    border-radius: 8px; /* Rounded corners for a modern look */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+    transition: transform 0.3s, box-shadow 0.3s; /* Smooth transitions */
+}
+
+.product-item:hover {
+    transform: translateY(-5px); /* Slight lift on hover */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Darker shadow on hover */
 }
 
 .product-item img {
     max-width: 100%;
+    height: auto;
+    margin-bottom: 15px; /* Add space below the image */
 }
 
+.product-item h3 {
+    font-size: 1.5em;
+    margin-bottom: 10px;
+}
+
+.product-item p {
+    color: #007BFF;
+    font-size: 1.2em;
+    margin-bottom: 15px;
+}
+
+.product-item button {
+    padding: 10px 20px;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s; /* Smooth transition on hover */
+}
+
+.product-item button:hover {
+    background-color: #0056b3;
+}
+
+/* Footer Styles */
 footer {
-    background-color: #333;
+    background-color: #444;
     color: white;
     padding: 20px 0;
     text-align: center;
+    border-top: 1px solid #e7e7e7; /* Add a subtle top border */
 }
 
 footer .social-media a {
     color: white;
     margin: 0 10px;
     text-decoration: none;
+    transition: color 0.3s; /* Smooth transition on hover */
+}
+
+footer .social-media a:hover {
+    color: #ff6600; /* Change color on hover */
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    header .container {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    header nav ul {
+        flex-direction: column;
+        gap: 10px; /* Adjust gap for better spacing in vertical layout */
+    }
+
+    .banner {
+        padding: 80px 0; /* Adjust padding for smaller screens */
+    }
+
+    .banner h1 {
+        font-size: 36px;
+    }
+
+    .banner p {
+        font-size: 18px;
+    }
+
+    .product-item {
+        width: calc(100% - 30px); /* Full width on small screens */
+    }
 }
