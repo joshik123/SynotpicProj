@@ -2,27 +2,51 @@ document.addEventListener('DOMContentLoaded', function() {
     // Get the cart icon and count span
     const cartIcon = document.getElementById('cart-icon');
     const cartCount = document.getElementById('cart-count');
+    const sidebar = document.getElementById('sidebar');
+    const closeSidebarBtn = document.getElementById('close-sidebar');
 
     // Initialize cart count
     let itemCount = 0;
 
-    // Add event listener to all 'Add to Cart' buttons
+    // Event listener for cart icon click
+    cartIcon.addEventListener('click', function() {
+        sidebar.classList.toggle('open');
+    });
+
+    // Get the button that opens the modal
     const addToCartButtons = document.querySelectorAll('.add-to-cart');
+
+    // Get the success message element
+    const successMessage = document.getElementById("success-message");
+
+    // When the user clicks on 'Add to Cart' button
     addToCartButtons.forEach(button => {
         button.addEventListener('click', function() {
-            // Increment item count
-            itemCount++;
-            
-            // Update cart count
+            console.log("Add to Cart button clicked");
+            const quantityInput = this.previousElementSibling;
+            const quantity = parseInt(quantityInput.value);
+            itemCount += quantity;
             cartCount.textContent = itemCount;
-
-            // Add item to cart (you can implement this part as needed)
-            // For now, let's just console log the added item's name and price
-            const itemName = this.getAttribute('data-name');
-            const itemPrice = this.getAttribute('data-price');
-            console.log(`Added to cart: ${itemName} - $${itemPrice}`);
-
-            // You can implement further functionality here, like adding the item to the actual cart
+            console.log(`Item count updated: ${itemCount}`);
+            // Show success message
+            showSuccessMessage();
+            // Reset quantity input to 1
+            quantityInput.value = 0;
         });
+    });
+
+    // Function to show success message
+    function showSuccessMessage() {
+        console.log("Success");
+        successMessage.style.display = "block";
+        setTimeout(function() {
+            successMessage.style.display = "none";
+            console.log("/////");
+        }, 2000); // Hide message after 2 seconds
+    }
+
+    // Close sidebar when close button is clicked
+    closeSidebarBtn.addEventListener('click', function() {
+        sidebar.classList.remove('open');
     });
 });
