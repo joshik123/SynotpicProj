@@ -8,6 +8,7 @@ All Node.JS modules needed should be in the repository.
 
 ## File Structure
 
+
 ```text
 SynotpicProj/
     ├── node_modules

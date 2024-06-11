@@ -2,11 +2,13 @@ const express = require('express');
 const app = express();
 const port = 3000;
 const fs = require('fs');
+const mysql = require('mysql');
+
 
 app.use(express.static('public'));
 
 
-// Default route to login need to change 
+// Default route to index need to change 
 app.get('/', function(req, res) {
     res.sendFile('public/index.html', {root: __dirname}, (err) => {
         if (err) {console.log(err);}
@@ -45,6 +47,8 @@ app.get('/contact', (req, res) => {
     });
 });
 
+
+
 // Route to volunteer
 app.get('/profile', (req, res) => {
     res.sendFile('public/volunteer.html', {root: __dirname}, (err) => {
@@ -62,7 +66,7 @@ app.get('/shop', (req, res) => {
 
 // Route to messages
 app.get('/about', (req, res) => {
-    res.sendFile('./public/about.html', {root: __dirname}, (err) => {
+    res.sendFile('public/about.html', {root: __dirname}, (err) => {
         if (err) {console.log(err);}    
     });
 });
@@ -82,3 +86,29 @@ app.listen(port, ()=> {
 });
 
 
+
+// Create a connection to the database
+const connection = mysql.createConnection({
+    host: '127.0.0.1',    
+    user: 'root',          
+    password: 'pass',  
+
+});
+
+// Connect to the database
+connection.connect((err) => {
+    if (err) {
+        console.error('Error connecting to the database:', err);
+        return;
+    }
+    console.log('Connected to the MySQL server.');
+});
+
+// Close the connection
+connection.end((err) => {
+    if (err) {
+        console.error('Error closing the connection:', err);
+        return;
+    }
+    console.log('Connection to the MySQL server closed.');
+});
