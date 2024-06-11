@@ -1,14 +1,19 @@
-const express = require('express');
+
+/*const express = require('express');
 const app = express();
 const port = 3000;
+const { MongoClient } = require('mongodb');
 const fs = require('fs');
+const bodyParser = require('body-parser');
 
+app.use(bodyParser.json()); 
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static('public'));
 
 
 // Default route to login need to change 
 app.get('/', function(req, res) {
-    res.sendFile('public/index.html', {root: __dirname}, (err) => {
+    res.sendFile('public/login.html', {root: __dirname}, (err) => {
         if (err) {console.log(err);}
     });
 });
@@ -38,38 +43,38 @@ app.post('/auth/signup', function(req, res) {
 
 });
 
-// Route to contact
-app.get('/contact', (req, res) => {
-    res.sendFile('public/contact.html', {root: __dirname}, (err) => {
+// Route to home
+app.get('/home', (req, res) => {
+    res.sendFile('public/home.html', {root: __dirname}, (err) => {
         if (err) {console.log(err);}    
     });
 });
 
-// Route to volunteer
+// Route to profile
 app.get('/profile', (req, res) => {
-    res.sendFile('public/volunteer.html', {root: __dirname}, (err) => {
+    res.sendFile('public/profile.html', {root: __dirname}, (err) => {
         if (err) {console.log(err);}    
     });
 });
 
-// Route to shop
-app.get('/shop', (req, res) => {
-    res.sendFile('public/shop.html', {root: __dirname}, (err) => {
+// Route to basket/checkout
+app.get('/home', (req, res) => {
+    res.sendFile('public/checkout.html', {root: __dirname}, (err) => {
         if (err) {console.log(err);}    
     });
 });
 
 
 // Route to messages
-app.get('/about', (req, res) => {
-    res.sendFile('./public/about.html', {root: __dirname}, (err) => {
+app.get('/messages', (req, res) => {
+    res.sendFile('./public/messages.html', {root: __dirname}, (err) => {
         if (err) {console.log(err);}    
     });
 });
 
-// Route to donate
-app.get('/donate', (req, res) => {
-    res.sendFile('public/donate.html', {root: __dirname}, (err) => {
+// Route to profile
+app.get('/profile', (req, res) => {
+    res.sendFile('public/profile.html', {root: __dirname}, (err) => {
         if (err) {console.log(err);}
     });
 });
@@ -80,5 +85,152 @@ app.listen(port, ()=> {
     console.log('Server Running');
     console.log('http://localhost:3000/');
 });
+
+
+
+
+// Replace with your MongoDB connection string
+const uri = 'your_mongodb_connection_string_here';
+
+// Replace with your database and collection names
+const dbName = 'your_database_name';
+const collectionName = 'users';
+
+const bcrypt = require('bcrypt');
+
+async function signupUser(userData) {
+    const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
+
+    try {
+        // Hash the password
+        const hashedPassword = await bcrypt.hash(userData.password, 10);
+        userData.password = hashedPassword;
+
+        // Connect to the MongoDB cluster
+        await client.connect();
+
+        // Select the database and collection
+        const db = client.db(dbName);
+        const collection = db.collection(collectionName);
+
+        // Insert the new user data
+        const result = await collection.insertOne(userData);
+        console.log(`New user inserted with the following id: ${result.insertedId}`);
+    } catch (err) {
+        console.error('Error inserting user:', err);
+    } finally {
+        // Close the connection to the database
+        await client.close();
+    }
+}*/
+const express = require('express');
+const mysql = require('mysql');
+const bcrypt = require('bcrypt');
+const bodyParser = require('body-parser');
+const path = require('path');
+
+//const { v4: uuidv4 } = require('uuid');
+const crypto = require('crypto');
+
+function generateUniqueID() {
+    // Get current timestamp in milliseconds
+    const timestamp = Date.now().toString();
+
+    // Generate a random number (between 0 and 9999)
+    const randomNumber = Math.floor(Math.random() * 10000).toString();
+
+    // Combine timestamp and random number
+    const combinedString = timestamp + randomNumber;
+
+    // Generate a hash (SHA-256) of the combined string
+    const hash = crypto.createHash('sha256').update(combinedString).digest('hex');
+
+    // Extract the first 12 characters of the hash to ensure it's less than 13 characters long
+    const uniqueID = hash.substring(0, 12);
+
+    return uniqueID;
+}
+
+const app = express();
+const port = 3000;
+
+// Database connection
+const connection = mysql.createConnection({
+    host: 'localhost',
+    user: 'root',
+    password: 'SpringL0g010!',
+    database: 'registration',
+    port:"3306"
+  });
+
+  
+connection.connect(err => {
+    if (err) {
+        console.error('Error connecting to database: ' + err.stack);
+        return;
+    }
+    console.log('Connected to database as ID ' + connection.threadId);
+});
+
+app.use(bodyParser.json());
+app.use(express.static('public'));
+app.post('/register', async (req, res) => {
+    const { fullname, email, password, phone } = req.body;
+    const id = generateUniqueID(); // Generate a unique ID
+    const hashedPassword = await bcrypt.hash(password, 10); // Hash the password
+
+    const sql = 'INSERT INTO users (id, fullname, email, password, phone) VALUES (?, ?, ?, ?, ?)';
+connection.query(sql, [id, fullname, email, hashedPassword, phone], (error, results) => {
+    if (error) {
+        console.error('Database error:', error); // Log the actual error to the console for debugging purposes
+        res.status(500).json({ message: 'Database error', error: error.message }); // Include the error message in the response
+        return;
+    }
+        res.json({ message: 'Registration successful!', userId: id });
+    });
+});
+
+app.post('/login', (req, res) => {
+    const { email, password } = req.body;
+
+    connection.query('SELECT * FROM users WHERE email = ?', [email], (error, results) => {
+        if (error) {
+            console.error('Database error:', error);
+            res.status(500).json({ success: false, message: 'Internal server error' });
+            return;
+        }
+
+        if (results.length > 0) {
+            const user = results[0];
+
+            bcrypt.compare(password, user.password, (err, result) => {
+                if (result) {
+                    res.json({ success: true });
+                } else {
+                    res.json({ success: false, message: 'Invalid email or password' });
+                }
+            });
+        } else {
+            res.json({ success: false, message: 'Invalid email or password' });
+        }
+    });
+});
+
+// Home endpoint to serve home.html
+app.get('/home', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public/home.html'));
+});
+app.get('/login', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public/login.html'));
+});
+
+
+
+app.listen(port, () => {
+    console.log(`Server running at http://localhost:${port}/`);
+});
+
+
+
 
 
