@@ -56,67 +56,51 @@ header .search-bar input {
     border-radius: 4px;
 }
 
-/* Donate Section Styles */
+/* Donate Section Styling */
 #donate {
-    background-color: #f9f9f9;
-    padding: 100px 0;
+    background-color: #f9f9f9; /* Light background color */
+    padding: 80px 0; /* Increased padding for better spacing */
     text-align: center;
 }
 
+#donate .container {
+    max-width: 800px; /* Limit content width */
+    margin: 0 auto; /* Center content horizontally */
+}
+
 #donate h2 {
-    font-size: 3em;
-    color: #333;
+    font-size: 2.5rem; /* Larger font size for heading */
+    color: #333; /* Dark text color */
+    margin-bottom: 30px; /* Increased bottom margin for spacing */
 }
 
 #donate p {
-    font-size: 1.2em;
-    color: #666;
-    margin-bottom: 40px;
+    font-size: 1.2rem; /* Slightly larger font size for paragraph */
+    color: #666; /* Slightly darker text color */
+    margin-bottom: 40px; /* Increased bottom margin for spacing */
 }
 
-#donation-form {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+#donate button {
+    padding: 15px 30px; /* Increased padding for button */
+    background-color: #007bff; /* Primary button color */
+    color: #fff; /* Text color */
+    border: none; /* Remove border */
+    border-radius: 5px; /* Rounded corners */
+    font-size: 1.2rem; /* Font size */
+    cursor: pointer; /* Cursor style */
+    transition: background-color 0.3s; /* Smooth hover transition */
 }
 
-#donation-form label {
-    font-size: 1.2em;
-    margin-bottom: 10px;
+#donate button:hover {
+    background-color: #0056b3; /* Darker shade on hover */
 }
 
-#donation-form input[type="text"] {
-    padding: 10px;
-    width: 200px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    margin-bottom: 20px;
+/* Additional Styling */
+#donate .icon {
+    font-size: 3rem; /* Larger icon size */
+    margin-bottom: 20px; /* Increased bottom margin for spacing */
+    color: #007bff; /* Icon color */
 }
-
-#donate-btn {
-    padding: 15px 40px;
-    background-color: #ff6600;
-    color: #fff;
-    border: none;
-    border-radius: 8px;
-    font-size: 1.2em;
-    cursor: pointer;
-    transition: background-color 0.3s;
-}
-
-#donate-btn:hover {
-    background-color: #cc5200;
-}
-
-.hidden {
-    display: none;
-}
-
-#thank-you p {
-    font-size: 1.2em;
-    color: #333;
-}
-
 /* Footer Styles */
 footer {
     background-color: #333;

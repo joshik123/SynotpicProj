@@ -44,9 +44,4 @@ document.addEventListener('DOMContentLoaded', function() {
             console.log("/////");
         }, 2000); // Hide message after 2 seconds
     }
-
-    // Close sidebar when close button is clicked
-    closeSidebarBtn.addEventListener('click', function() {
-        sidebar.classList.remove('open');
-    });
 });

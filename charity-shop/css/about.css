@@ -134,3 +134,125 @@ footer .container p {
 .social-media a:hover {
     color: #ff6600;
 }
+
+/* Custom Styles for Navigation Links with Icons */
+nav ul {
+    list-style-type: none;
+    padding: 0;
+    display: flex;
+    gap: 20px; /* Space between navigation items */
+}
+nav ul li {
+    display: inline;
+}
+nav ul li a {
+    display: inline-flex; /* Aligns icon and text */
+    align-items: center; /* Centers vertically */
+    text-decoration: none;
+    color: #333;
+    font-size: 16px;
+    transition: color 0.3s;
+}
+nav ul li a i {
+    margin-right: 8px; /* Space between icon and text */
+}
+nav ul li a:hover {
+    color: #007bff; /* Change text color on hover */
+}
+
+/* Home Section Styling */
+#home {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    background-color: #f4f4f4;
+    padding: 50px 20px;
+}
+#home .content {
+    max-width: 800px;
+    padding: 20px;
+    background: #fff;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+}
+#home .content img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px;
+}
+#home h1 {
+    font-size: 2.5rem;
+    color: #333;
+    margin: 20px 0;
+}
+#home p {
+    font-size: 1.2rem;
+    color: #555;
+    margin-bottom: 20px;
+}
+#home .buttons {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+/* About Section Styling */
+#about {
+    background-color: #f9f9f9;
+    padding: 50px 20px;
+}
+#about .container {
+    max-width: 1000px;
+    margin: 0 auto;
+    text-align: center;
+}
+#about h2 {
+    font-size: 2.5rem;
+    color: #333;
+    margin-bottom: 20px;
+}
+#about .about-content, #about .history, #about .team {
+    margin-bottom: 30px;
+}
+#about .about-content p, #about .history p, #about .team p, #about .team ul {
+    font-size: 1.1rem;
+    color: #555;
+    line-height: 1.6;
+}
+#about .team ul {
+    list-style: none;
+    padding: 0;
+}
+#about .team li {
+    margin: 5px 0;
+}
+#about .about-content, #about .history, #about .team {
+    background: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+}
+#about h3 {
+    font-size: 2rem;
+    color: #333;
+    margin-bottom: 15px;
+}
+/* Flexbox Layout for the Team Section */
+#about .team {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+#about .team ul {
+    max-width: 400px;
+    text-align: left;
+}
+/* Icon Styling for Team Members */
+#about .team li:before {
+    content: "\f007"; /* Font Awesome user icon */
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+    margin-right: 10px;
+    color: #007bff;
+}

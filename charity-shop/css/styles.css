@@ -228,3 +228,96 @@ footer .social-media a:hover {
         width: calc(100% - 30px); /* Full width on small screens */
     }
 }
+
+/* Custom Styles for Buttons with Icons */
+.btn {
+    display: inline-flex; /* Aligns icon and text */
+    align-items: center; /* Centers vertically */
+    padding: 10px 20px;
+    margin: 5px;
+    background-color: #007bff;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 16px;
+    transition: background-color 0.3s;
+}
+
+.btn i {
+    margin-right: 8px; /* Space between icon and text */
+}
+
+.btn:hover {
+    background-color: #0056b3;
+}
+
+/* Custom Styles for Navigation Links with Icons */
+nav ul {
+    list-style-type: none;
+    padding: 0;
+    display: flex;
+    gap: 20px; /* Space between navigation items */
+}
+
+nav ul li {
+    display: inline;
+}
+
+nav ul li a {
+    display: inline-flex; /* Aligns icon and text */
+    align-items: center; /* Centers vertically */
+    text-decoration: none;
+    color: #333;
+    font-size: 16px;
+    transition: color 0.3s;
+}
+
+nav ul li a i {
+    margin-right: 8px; /* Space between icon and text */
+}
+
+nav ul li a:hover {
+    color: #007bff; /* Change text color on hover */
+}
+
+/* Home Section Styling */
+#home {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    background-color: #f4f4f4;
+    padding: 50px 20px;
+}
+
+#home .content {
+    max-width: 800px;
+    padding: 20px;
+    background: #fff;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+}
+
+#home .content img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px;
+}
+
+#home h1 {
+    font-size: 2.5rem;
+    color: #333;
+    margin: 20px 0;
+}
+
+#home p {
+    font-size: 1.2rem;
+    color: #555;
+    margin-bottom: 20px;
+}
+
+#home .buttons {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
