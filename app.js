@@ -133,19 +133,19 @@ const path = require('path');
 const crypto = require('crypto');
 
 function generateUniqueID() {
-    // Get current timestamp in milliseconds
+    
     const timestamp = Date.now().toString();
 
-    // Generate a random number (between 0 and 9999)
+    
     const randomNumber = Math.floor(Math.random() * 10000).toString();
 
-    // Combine timestamp and random number
+    
     const combinedString = timestamp + randomNumber;
 
-    // Generate a hash (SHA-256) of the combined string
+   
     const hash = crypto.createHash('sha256').update(combinedString).digest('hex');
 
-    // Extract the first 12 characters of the hash to ensure it's less than 13 characters long
+    
     const uniqueID = hash.substring(0, 12);
 
     return uniqueID;
@@ -182,8 +182,8 @@ app.post('/register', async (req, res) => {
     const sql = 'INSERT INTO users (id, fullname, email, password, phone) VALUES (?, ?, ?, ?, ?)';
 connection.query(sql, [id, fullname, email, hashedPassword, phone], (error, results) => {
     if (error) {
-        console.error('Database error:', error); // Log the actual error to the console for debugging purposes
-        res.status(500).json({ message: 'Database error', error: error.message }); // Include the error message in the response
+        console.error('Database error:', error); 
+        res.status(500).json({ message: 'Database error', error: error.message }); 
         return;
     }
         res.json({ message: 'Registration successful!', userId: id });
@@ -216,12 +216,24 @@ app.post('/login', (req, res) => {
     });
 });
 
-// Home endpoint to serve home.html
-app.get('/home', (req, res) => {
-    res.sendFile(path.join(__dirname, 'public/home.html'));
+
+app.get('/index', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public/index.html'));
 });
 app.get('/login', (req, res) => {
     res.sendFile(path.join(__dirname, 'public/login.html'));
+});
+app.get('/contact', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public/contact.html'));
+});
+app.get('/donate', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public/donate.html'));
+});
+app.get('/about', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public/about.html'));
+});
+app.get('/register', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public/register.html'));
 });
 
 
