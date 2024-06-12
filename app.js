@@ -235,12 +235,14 @@ app.post('/login', (req, res) => {
 //     });
 // });
 
+app.post('/settings', (req, res) => {
+    const { currentEmail, newEmail, currentPassword, newPassword } = req.body;
 
+    if (!currentEmail || !newEmail || !currentPassword || !newPassword) {
+        res.status(400).json({ message: 'All fields are required' });
+        return;
+    }
 
-app.post('/update', (req, res) => {
-    const { currentEmail, newEmail, currentPassword, newPassword} = req.body;
-
-    // First, fetch the current hashed password from the database
     const fetchSql = 'SELECT password FROM users WHERE email = ?';
     connection.query(fetchSql, [currentEmail], (fetchError, fetchResults) => {
         if (fetchError) {
@@ -248,7 +250,7 @@ app.post('/update', (req, res) => {
             res.status(500).json({ message: 'Database error', error: fetchError.message });
             return;
         }
-        
+
         if (fetchResults.length === 0) {
             res.status(404).json({ message: 'Current email not found' });
             return;
@@ -256,7 +258,6 @@ app.post('/update', (req, res) => {
 
         const hashedCurrentPassword = fetchResults[0].password;
 
-        // Compare the provided current password with the hashed password
         bcrypt.compare(currentPassword, hashedCurrentPassword, (compareError, isMatch) => {
             if (compareError) {
                 console.error('Password comparison error:', compareError);
@@ -269,7 +270,6 @@ app.post('/update', (req, res) => {
                 return;
             }
 
-            // Hash the new password
             bcrypt.hash(newPassword, 10, (hashError, hashedNewPassword) => {
                 if (hashError) {
                     console.error('Hashing error:', hashError);
@@ -277,7 +277,6 @@ app.post('/update', (req, res) => {
                     return;
                 }
 
-                // Update the email and password
                 const updateSql = 'UPDATE users SET email = ?, password = ? WHERE email = ?';
                 connection.query(updateSql, [newEmail, hashedNewPassword, currentEmail], (updateError, updateResults) => {
                     if (updateError) {
@@ -285,7 +284,7 @@ app.post('/update', (req, res) => {
                         res.status(500).json({ message: 'Database error', error: updateError.message });
                         return;
                     }
-                    
+
                     if (updateResults.affectedRows === 0) {
                         res.status(404).json({ message: 'Update failed, current email not found' });
                     } else {
@@ -296,6 +295,8 @@ app.post('/update', (req, res) => {
         });
     });
 });
+
+
 
 
 
