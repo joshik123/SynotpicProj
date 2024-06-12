@@ -34,36 +34,40 @@
             </div>
         </div>
     </header>
-
-    <!-- Success message -->
-    <div id="success-message" style="display: none;">
-        Item successfully added to cart!
+    <!-- Product Details Modal -->
+    <div id="product-modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <div id="product-details">
+                <!-- Product Details Will Be Displayed Here -->
+            </div>
+        </div>
     </div>
 
     <section id="shop">
         <div class="container">
             <h2>Shop</h2>
             <div class="product-grid">
-                <div class="product-item">
+                <div class="product-item" data-product-id="1">
                     <img src="images/sweetcorn.png" alt="Product 1">
-                    <h3>Product 1</h3>
+                    <h3>ផ្អែម(Sweetcorn)</h3>
                     <p>$10.00</p>
                     <input type="number" class="quantity-input" value="1" min="1">
                     <button class="add-to-cart" data-name="Product 1" data-price="10.00">Add to Cart</button>
                 </div>
                 <!-- Add more products as needed -->
-                <div class="product-item">
+                <div class="product-item" data-product-id="2">
                     <!-- Ensure the path to the product image is correct -->
                     <img src="images/rice.png" alt="Product 2" aria-label="Product 2 Image">
-                    <h3>Product 2</h3>
+                    <h3>ខ្ញី(Rice)</h3>
                     <p>£10.00</p>
                     <input type="number" class="quantity-input" value="1" min="1">
                     <button class="add-to-cart" data-name="Product 2" data-price="10.00">Add to Cart</button>
                 </div>
                 <!-- Example Product 3 -->
-                <div class="product-item">
+                <div class="product-item" data-product-id="3">
                     <img src="images/tuna.png" alt="Product 3" aria-label="Product 3 Image">
-                    <h3>Product 3</h3>
+                    <h3>ត្រី(Tuna)</h3>
                     <p>£20.00</p>
                     <input type="number" class="quantity-input" value="1" min="1">
                     <button class="add-to-cart" data-name="Product 3" data-price="20.00">Add to Cart</button>
@@ -72,22 +76,6 @@
         </div>
     </section>
     
-    <footer>
-        <div class="container">
-            <p>&copy; 2024 Charity Shop. All rights reserved.</p>
-            <div class="social-media">
-                <a href="#" aria-label="Facebook">
-                    <img src="images/facebook.png" alt="Facebook">
-                </a>
-                <a href="#" aria-label="Twitter">
-                    <img src="images/twitter.png" alt="Twitter">
-                </a>
-                <a href="#" aria-label="Instagram">
-                    <img src="images/instagram.png" alt="Instagram">
-                </a>
-            </div>
-        </div>
-    </footer>
     <script src="js/shop.js"></script>
 </body>
 </html>
