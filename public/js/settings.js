@@ -17,7 +17,7 @@
 //         }
 //     });
 
-    const form = document.getElementById('settings-form');
+/*    const form = document.getElementById('settings-form');
 
     form.addEventListener('DOMContentLoaded', () => {
         event.preventDefault();
@@ -50,6 +50,37 @@
     
             });
         }
+    });*/
+    document.getElementById("changeEmailForm").addEventListener("submit", function(event) {
+        event.preventDefault();
+        
+        const form = event.target;
+        const formData = new FormData(form);
+        
+        fetch("/change-email", {
+            method: "POST",
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                currentEmail: formData.get('currentEmail'),
+                newEmail: formData.get('newEmail')
+            })
+        })
+        .then(response => {
+            if (response.ok) {
+                alert("Email changed successfully!");
+            } else {
+                return response.json().then(data => {
+                    throw new Error(data.message);
+                });
+            }
+        })
+        .catch(error => {
+            const errorMessage = document.getElementById("error-message");
+            errorMessage.textContent = error.message;
+            errorMessage.style.display = "block";
+        });
     });
     
     
