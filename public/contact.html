@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contact Us - Charity Shop</title>
     <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
         /* Additional Styles */
         #contact {
@@ -64,12 +65,12 @@
             </div>
             <nav>
                 <ul>
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="about.html">About Us</a></li>
-                    <li><a href="shop.html">Shop</a></li>
-                    <li><a href="donate.html">Donate</a></li>
-                    <li><a href="volunteer.html">Volunteer</a></li>
-                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
+                    <li><a href="about.html"><i class="fas fa-info-circle"></i> About Us</a></li>
+                    <li><a href="shop.html"><i class="fas fa-shopping-bag"></i> Shop</a></li>
+                    <li><a href="donate.html"><i class="fas fa-hand-holding-heart"></i> Donate</a></li>
+                    <li><a href="volunteer.html"><i class="fas fa-hands-helping"></i> Volunteer</a></li>
+                    <li><a href="contact.html"><i class="fas fa-envelope"></i> Contact</a></li>
                 </ul>
             </nav>
             <div class="search-bar">
@@ -78,15 +79,28 @@
         </div>
     </header>
 
-    <section id="contact">
+    <section id="contact" style="background-color: #f9f9f9; padding: 60px 0;">
         <div class="container">
-            <h2>Contact Us</h2>
-            <form id="contact-form">
-                <input type="text" placeholder="Your Name" required>
-                <input type="email" placeholder="Your Email" required>
-                <textarea placeholder="Your Message" required></textarea>
-                <button type="submit">Send</button>
+            <div style="text-align: center;">
+                <h2 style="font-size: 36px; color: #333; margin-bottom: 40px;">Contact Us</h2>
+            </div>
+            <form id="contact-form" style="max-width: 500px; margin: 0 auto;">
+                <div style="margin-bottom: 20px;">
+                    <input type="text" placeholder="Your Name" style="width: 100%; padding: 12px; border: 1px solid #ccc; border-radius: 4px;" required>
+                </div>
+                <div style="margin-bottom: 20px;">
+                    <input type="email" placeholder="Your Email" style="width: 100%; padding: 12px; border: 1px solid #ccc; border-radius: 4px;" required>
+                </div>
+                <div style="margin-bottom: 20px;">
+                    <textarea placeholder="Your Message" style="width: 100%; padding: 12px; border: 1px solid #ccc; border-radius: 4px; resize: vertical;" rows="6" required></textarea>
+                </div>
+                <button type="submit" style="background-color: #4CAF50; color: white; padding: 14px 20px; border: none; border-radius: 4px; cursor: pointer; font-size: 16px; transition: background-color 0.3s;">Send Message</button>
             </form>
+            <div style="text-align: center; margin-top: 20px;">
+                <p>Or reach out to us directly:</p>
+                <p>Email: <a href="mailto:info@example.com">info@example.com</a></p>
+                <p>Phone: +1 (123) 456-7890</p>
+            </div>
         </div>
     </section>
 

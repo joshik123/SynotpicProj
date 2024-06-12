@@ -56,58 +56,77 @@ header .search-bar input {
     border-radius: 4px;
 }
 
-
 /* About Section Styles */
 #about {
     background-color: #f9f9f9;
-    padding: 60px 0;
+    padding: 50px 20px;
+}
+
+#about .container {
+    max-width: 1000px;
+    margin: 0 auto;
     text-align: center;
 }
 
 #about h2 {
-    font-size: 3em;
+    font-size: 2.5rem;
     color: #333;
-}
-
-.about-content {
-    margin-bottom: 40px;
-}
-
-.about-content p {
-    font-size: 1.2em;
-    color: #666;
     margin-bottom: 20px;
 }
 
+.about-content,
 .history,
-.team {
-    margin-bottom: 40px;
+.team,
+.impact {
+    margin-bottom: 30px;
+    background: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+}
+
+.about-content p,
+.history p,
+.team p,
+.impact p,
+.team ul,
+.impact ul {
+    font-size: 1.1rem;
+    color: #555;
+    line-height: 1.6;
+    margin-bottom: 15px;
 }
 
 .history h3,
-.team h3 {
+.team h3,
+.impact h3 {
     font-size: 2em;
     color: #333;
     margin-bottom: 20px;
 }
 
-.history p,
-.team p {
-    font-size: 1.1em;
-    color: #666;
+.team ul,
+.impact ul {
+    list-style: none;
+    padding: 0;
     margin-bottom: 15px;
 }
 
-.team ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
+.team ul li,
+.impact ul li {
+    font-size: 1.1rem;
+    color: #555;
+    margin-bottom: 10px;
 }
 
-.team ul li {
-    font-size: 1.1em;
-    color: #666;
-    margin-bottom: 10px;
+.team ul li:before,
+.impact ul li:before {
+    content: "\2022"; /* Bullet point */
+    color: #007bff;
+    font-weight: bold;
+    display: inline-block;
+    width: 1em;
+    margin-left: -1em;
 }
 
 /* Footer Styles */
@@ -133,4 +152,33 @@ footer .container p {
 
 .social-media a:hover {
     color: #ff6600;
+}
+
+/* Custom Styles for Navigation Links with Icons */
+nav ul {
+    list-style-type: none;
+    padding: 0;
+    display: flex;
+    gap: 20px; /* Space between navigation items */
+}
+
+nav ul li {
+    display: inline;
+}
+
+nav ul li a {
+    display: inline-flex; /* Aligns icon and text */
+    align-items: center; /* Centers vertically */
+    text-decoration: none;
+    color: #333;
+    font-size: 16px;
+    transition: color 0.3s;
+}
+
+nav ul li a i {
+    margin-right: 8px; /* Space between icon and text */
+}
+
+nav ul li a:hover {
+    color: #007bff; /* Change text color on hover */
 }
