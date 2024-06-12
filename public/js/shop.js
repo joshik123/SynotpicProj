@@ -19,13 +19,6 @@ document.addEventListener('DOMContentLoaded', function() {
     // Get the success message element
     const successMessage = document.getElementById("success-message");
 
-    // Function to show success message
-    function showSuccessMessage() {
-        successMessage.style.display = "block";
-        setTimeout(function() {
-            successMessage.style.display = "none";
-        }, 2000); // Hide after 2 seconds
-    }
 
     // When the user clicks on 'Add to Cart' button
     addToCartButtons.forEach(button => {
@@ -37,10 +30,7 @@ document.addEventListener('DOMContentLoaded', function() {
             itemCount += quantity;
             cartCount.textContent = itemCount;
             console.log(`Item count updated: ${itemCount}`);
-            // Show success message
-            showSuccessMessage();
-            // Reset quantity input to 1
-            quantityInput.value = 1;
+             quantityInput.value = 0;
         });
     });
 
@@ -63,6 +53,36 @@ document.addEventListener('DOMContentLoaded', function() {
             price: "£20.00",
             description: "Wild-caught tuna, rich in omega-3 fatty acids.",
             image: "images/tuna.png"
+        },
+        4: {
+            name:"Beans",
+            price:"0.50",
+            description: "Fresh beans, rich in carbohydrates.",
+            image:"images/beans.jpeg"
+        },
+        5:{
+            name:"Bananna",
+            price:"0.75",
+            description: "Fresh banannas sourced locally",
+            image:"images/bananna.png"
+        },
+        6:{
+            name:"Carrots",
+            price:"£1.00",
+            description: "Fresh carrots sourced locally",
+            image:"images/carrots.png"
+        },
+        7:{
+            name:"Cucumber",
+            price:"0.67",
+            description:"Fresh tomatoes freshly picked",
+            image:"images/cucumber.png"
+        },
+        8:{
+            name:"Chicken",
+            price:"£2.00",
+            description:"Fresh raw chicken",
+            image:"images/chicken.png"
         }
     };
 
@@ -104,4 +124,39 @@ document.addEventListener('DOMContentLoaded', function() {
             modal.style.display = "none";
         }
     };
+
+    // Filter products based on category
+    document.getElementById('category').addEventListener('change', function(){
+        var category = this.value;
+        var productItems = document.querySelectorAll('.product-item');
+        productItems.forEach(item => {
+            if(category === 'all' || item.dataset.category === category) {
+                item.style.display = 'block';
+            } else {
+                item.style.display = 'none';
+            }
+        });
+    });
+
+    // Sort products
+    document.getElementById('sort').addEventListener('change', function(){
+        var sortOption = this.value;
+        var productItems = document.querySelectorAll('.product-item');
+        var sortedItems = Array.from(productItems).sort((a, b) => {
+            if(sortOption === 'price-low') {
+                return parseFloat(a.querySelector('p').textContent.replace(/[^\d.]/g, '')) - parseFloat(b.querySelector('p').textContent.replace(/[^\d.]/g, ''));
+            } else if(sortOption === 'price-high') {
+                return parseFloat(b.querySelector('p').textContent.replace(/[^\d.]/g, '')) - parseFloat(a.querySelector('p').textContent.replace(/[^\d.]/g, ''));
+            } else if(sortOption === 'name-asc') {
+                return a.querySelector('h3').textContent.localeCompare(b.querySelector('h3').textContent);
+            } else if(sortOption === 'name-desc') {
+                return b.querySelector('h3').textContent.localeCompare(a.querySelector('h3').textContent);
+            }
+        });
+        var grid = document.querySelector('.product-grid');
+        grid.innerHTML = '';
+        sortedItems.forEach(item => {
+            grid.appendChild(item);
+        });
+    });
 });
