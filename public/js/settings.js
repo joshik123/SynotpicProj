@@ -51,25 +51,27 @@
             });
         }
     });*/
-    document.getElementById("changeEmailForm").addEventListener("submit", function(event) {
+    document.getElementById("changeForm").addEventListener("submit", function(event) {
         event.preventDefault();
         
         const form = event.target;
         const formData = new FormData(form);
         
-        fetch("/change-email", {
+        fetch("/update", {
             method: "POST",
             headers: {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
                 currentEmail: formData.get('currentEmail'),
-                newEmail: formData.get('newEmail')
+                newEmail: formData.get('newEmail'),
+                currentPass: formData.get('currentpass'),
+                newpass: formData.get('newpass')
             })
         })
         .then(response => {
             if (response.ok) {
-                alert("Email changed successfully!");
+                alert("Details has been changed successfully!");
             } else {
                 return response.json().then(data => {
                     throw new Error(data.message);

@@ -217,101 +217,85 @@ app.post('/login', (req, res) => {
 });
 
 
-// Changing details
-/*app.post('/update', function(req, res) {
-    const { old_pass, new_pass, conf_pass, old_email, new_email } = req.body;
+// app.post('/update', (req, res) => {
+//     const { currentEmail, newEmail } = req.body;
+    
+//     const sql = 'UPDATE users SET email = ? WHERE email = ?';
+//     connection.query(sql, [newEmail, currentEmail], (error, results) => {
+//         if (error) {
+//             console.error('Database error:', error);
+//             res.status(500).json({ message: 'Database error', error: error.message });
+//             return;
+//         }
+//         if (results.affectedRows === 0) {
+//             res.status(404).json({ message: 'Current email not found' });
+//         } else {
+//             res.json({ message: 'Email changed successfully' });
+//         }
+//     });
+// });
 
-    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-    if (!old_email || !emailPattern.test(old_email)) {
-        res.status(400).json({ success: false, message: 'Invalid old email address.' });
-        return;
-    }
 
-    if (new_email && !emailPattern.test(new_email)) {
-        res.status(400).json({ success: false, message: 'Invalid new email address.' });
-        return;
-    }
+app.post('/update', (req, res) => {
+    const { currentEmail, newEmail, currentPassword, newPassword} = req.body;
 
-    if (new_pass && new_pass !== conf_pass) {
-        res.status(400).json({ success: false, message: 'New password and confirmation password do not match.' });
-        return;
-    }
-
-    connection.query('SELECT * FROM users WHERE email = ?', [old_email], (error, results) => {
-        if (error) {
-            console.error('Database error:', error);
-            res.status(500).json({ success: false, message: 'Internal server error' });
+    // First, fetch the current hashed password from the database
+    const fetchSql = 'SELECT password FROM users WHERE email = ?';
+    connection.query(fetchSql, [currentEmail], (fetchError, fetchResults) => {
+        if (fetchError) {
+            console.error('Database error:', fetchError);
+            res.status(500).json({ message: 'Database error', error: fetchError.message });
+            return;
+        }
+        
+        if (fetchResults.length === 0) {
+            res.status(404).json({ message: 'Current email not found' });
             return;
         }
 
-        if (results.length > 0) {
-            const user = results[0];
+        const hashedCurrentPassword = fetchResults[0].password;
 
-            bcrypt.compare(old_pass, user.password, (err, result) => {
-                if (err) {
-                    console.error('Bcrypt error:', err);
-                    res.status(500).json({ success: false, message: 'Internal server error' });
+        // Compare the provided current password with the hashed password
+        bcrypt.compare(currentPassword, hashedCurrentPassword, (compareError, isMatch) => {
+            if (compareError) {
+                console.error('Password comparison error:', compareError);
+                res.status(500).json({ message: 'Password comparison error', error: compareError.message });
+                return;
+            }
+
+            if (!isMatch) {
+                res.status(401).json({ message: 'Incorrect current password' });
+                return;
+            }
+
+            // Hash the new password
+            bcrypt.hash(newPassword, 10, (hashError, hashedNewPassword) => {
+                if (hashError) {
+                    console.error('Hashing error:', hashError);
+                    res.status(500).json({ message: 'Hashing error', error: hashError.message });
                     return;
                 }
 
-                if (result) {
-                    const updates = {};
-                    if (new_email) updates.email = new_email;
-                    if (new_pass) {
-                        const saltRounds = 10;
-                        bcrypt.hash(new_pass, saltRounds, (err, hashedPassword) => {
-                            if (err) {
-                                console.error('Bcrypt error:', err);
-                                res.status(500).json({ success: false, message: 'Internal server error' });
-                                return;
-                            }
-
-                            updates.password = hashedPassword;
-                            updateUserDetails(user.id, updates, res);
-                        });
-                    } else {
-                        updateUserDetails(user.id, updates, res);
+                // Update the email and password
+                const updateSql = 'UPDATE users SET email = ?, password = ? WHERE email = ?';
+                connection.query(updateSql, [newEmail, hashedNewPassword, currentEmail], (updateError, updateResults) => {
+                    if (updateError) {
+                        console.error('Database error:', updateError);
+                        res.status(500).json({ message: 'Database error', error: updateError.message });
+                        return;
                     }
-                } else {
-                    res.json({ success: false, message: 'Invalid email or password' });
-                }
+                    
+                    if (updateResults.affectedRows === 0) {
+                        res.status(404).json({ message: 'Update failed, current email not found' });
+                    } else {
+                        res.json({ message: 'Email and password changed successfully' });
+                    }
+                });
             });
-        } else {
-            res.json({ success: false, message: 'Invalid email or password' });
-        }
+        });
     });
 });
-
-function updateUserDetails(userId, updates, res) {
-    const query = 'UPDATE users SET ? WHERE id = ?';
-    connection.query(query, [updates, userId], (error, results) => {
-        if (error) {
-            console.error('Database error:', error);
-            res.status(500).json({ success: false, message: 'Internal server error' });
-            return;
-        }
-        res.json({ success: true, message: 'Details updated successfully' });
-    });
-}*/
-app.post('/change-email', (req, res) => {
-    const { currentEmail, newEmail } = req.body;
-    
-    const sql = 'UPDATE users SET email = ? WHERE email = ?';
-    connection.query(sql, [newEmail, currentEmail], (error, results) => {
-        if (error) {
-            console.error('Database error:', error);
-            res.status(500).json({ message: 'Database error', error: error.message });
-            return;
-        }
-        if (results.affectedRows === 0) {
-            res.status(404).json({ message: 'Current email not found' });
-        } else {
-            res.json({ message: 'Email changed successfully' });
-        }
-    });
-});
-
 
 
 
