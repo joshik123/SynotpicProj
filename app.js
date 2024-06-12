@@ -89,40 +89,9 @@ app.listen(port, ()=> {
 
 
 
-// Replace with your MongoDB connection string
-const uri = 'your_mongodb_connection_string_here';
-
-// Replace with your database and collection names
-const dbName = 'your_database_name';
-const collectionName = 'users';
-
-const bcrypt = require('bcrypt');
-
-async function signupUser(userData) {
-    const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
-
-    try {
-        // Hash the password
-        const hashedPassword = await bcrypt.hash(userData.password, 10);
-        userData.password = hashedPassword;
-
-        // Connect to the MongoDB cluster
-        await client.connect();
-
-        // Select the database and collection
-        const db = client.db(dbName);
-        const collection = db.collection(collectionName);
-
-        // Insert the new user data
-        const result = await collection.insertOne(userData);
-        console.log(`New user inserted with the following id: ${result.insertedId}`);
-    } catch (err) {
-        console.error('Error inserting user:', err);
-    } finally {
-        // Close the connection to the database
-        await client.close();
-    }
 }*/
+
+
 const express = require('express');
 const mysql = require('mysql');
 const bcrypt = require('bcrypt');
@@ -215,6 +184,90 @@ app.post('/login', (req, res) => {
         }
     });
 });
+
+
+// Changing details
+app.post('/update', function(req, res) {
+    const { old_pass, new_pass, conf_pass, old_email, new_email } = req.body;
+
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    if (!old_email || !emailPattern.test(old_email)) {
+        res.status(400).json({ success: false, message: 'Invalid old email address.' });
+        return;
+    }
+
+    if (new_email && !emailPattern.test(new_email)) {
+        res.status(400).json({ success: false, message: 'Invalid new email address.' });
+        return;
+    }
+
+    if (new_pass && new_pass !== conf_pass) {
+        res.status(400).json({ success: false, message: 'New password and confirmation password do not match.' });
+        return;
+    }
+
+    connection.query('SELECT * FROM users WHERE email = ?', [old_email], (error, results) => {
+        if (error) {
+            console.error('Database error:', error);
+            res.status(500).json({ success: false, message: 'Internal server error' });
+            return;
+        }
+
+        if (results.length > 0) {
+            const user = results[0];
+
+            bcrypt.compare(old_pass, user.password, (err, result) => {
+                if (err) {
+                    console.error('Bcrypt error:', err);
+                    res.status(500).json({ success: false, message: 'Internal server error' });
+                    return;
+                }
+
+                if (result) {
+                    const updates = {};
+                    if (new_email) updates.email = new_email;
+                    if (new_pass) {
+                        const saltRounds = 10;
+                        bcrypt.hash(new_pass, saltRounds, (err, hashedPassword) => {
+                            if (err) {
+                                console.error('Bcrypt error:', err);
+                                res.status(500).json({ success: false, message: 'Internal server error' });
+                                return;
+                            }
+
+                            updates.password = hashedPassword;
+                            updateUserDetails(user.id, updates, res);
+                        });
+                    } else {
+                        updateUserDetails(user.id, updates, res);
+                    }
+                } else {
+                    res.json({ success: false, message: 'Invalid email or password' });
+                }
+            });
+        } else {
+            res.json({ success: false, message: 'Invalid email or password' });
+        }
+    });
+});
+
+function updateUserDetails(userId, updates, res) {
+    const query = 'UPDATE users SET ? WHERE id = ?';
+    connection.query(query, [updates, userId], (error, results) => {
+        if (error) {
+            console.error('Database error:', error);
+            res.status(500).json({ success: false, message: 'Internal server error' });
+            return;
+        }
+        res.json({ success: true, message: 'Details updated successfully' });
+    });
+}
+
+
+
+
+
 
 // Home endpoint to serve home.html
 app.get('/home', (req, res) => {

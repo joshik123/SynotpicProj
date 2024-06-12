@@ -1,3 +1,7 @@
+#main {
+    display: flex;
+}
+
 /* General Styles */
 body {
     font-family: 'Arial', sans-serif;
@@ -13,6 +17,7 @@ body {
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 20px;
+    display: flex;
 }
 
 header {
@@ -285,4 +290,60 @@ footer .container p {
 }
 .add-to-cart:hover {
     background: #0056b3;
+}
+
+
+
+
+.sidebar {
+    width: 300px;
+    padding: 20px;
+    background-color: #f8f8f8;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    /* position: fixed; */
+    top: 24%;
+    right: 15px;
+    height: 70%;
+    overflow-y: auto;
+    display: none; /* Hide sidebar initially */
+
+}
+
+.sidebar.open {
+    display: block; /* Show sidebar when open */
+}
+
+.sidebar h2 {
+    margin-top: 0;
+    color: black;
+}
+
+#basketItems {
+    list-style-type: none;
+    padding: 0;
+    color: black;
+}
+
+#basketItems li {
+    margin: 10px 0;
+    padding: 10px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+#buyNowButton {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    background-color: #28a745;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 20px;
+}
+
+#buyNowButton:hover {
+    background-color: #218838;
 }

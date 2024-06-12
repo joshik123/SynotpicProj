@@ -15,14 +15,12 @@
             </div>
             <nav>
                 <ul>
-                    <ul>
-                        <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
-                        <li><a href="about.html"><i class="fas fa-info-circle"></i> About Us</a></li>
-                        <li><a href="shop.html"><i class="fas fa-shopping-bag"></i> Shop</a></li>
-                        <li><a href="donate.html"><i class="fas fa-hand-holding-heart"></i> Donate</a></li>
-                        <li><a href="volunteer.html"><i class="fas fa-hands-helping"></i> Volunteer</a></li>
-                        <li><a href="contact.html"><i class="fas fa-envelope"></i> Contact</a></li>
-                    </ul>
+                    <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
+                    <li><a href="about.html"><i class="fas fa-info-circle"></i> About Us</a></li>
+                    <li><a href="shop.html"><i class="fas fa-shopping-bag"></i> Shop</a></li>
+                    <li><a href="donate.html"><i class="fas fa-hand-holding-heart"></i> Donate</a></li>
+                    <li><a href="volunteer.html"><i class="fas fa-hands-helping"></i> Volunteer</a></li>
+                    <li><a href="contact.html"><i class="fas fa-envelope"></i> Contact</a></li>
                 </ul>
             </nav>
             <div class="search-bar">
@@ -31,6 +29,11 @@
             <div class="cart-icon">
                 <img src="images/cart.png" alt="Shopping Cart" id="cart-icon">
                 <span id="cart-count">0</span>
+            </div>
+            <div class="sidebar" id="basketSidebar" hidden>
+                <h2>Your Basket</h2>
+                <ul id="basketItems"></ul>
+                <button id="buyNowButton">Buy Now</button>
             </div>
         </div>
     </header>
@@ -53,7 +56,6 @@
                 </div>
                 <!-- Add more products as needed -->
                 <div class="product-item">
-                    <!-- Ensure the path to the product image is correct -->
                     <img src="images/rice.png" alt="Product 2" aria-label="Product 2 Image">
                     <h3>Product 2</h3>
                     <p>£10.00</p>
@@ -61,6 +63,30 @@
                     <button class="add-to-cart" data-name="Product 2" data-price="10.00">Add to Cart</button>
                 </div>
                 <!-- Example Product 3 -->
+                <div class="product-item">
+                    <img src="images/tuna.png" alt="Product 3" aria-label="Product 3 Image">
+                    <h3>Product 3</h3>
+                    <p>£20.00</p>
+                    <input type="number" class="quantity-input" value="1" min="1">
+                    <button class="add-to-cart" data-name="Product 3" data-price="20.00">Add to Cart</button>
+                </div>
+
+                <div class="product-item">
+                    <img src="images/tuna.png" alt="Product 3" aria-label="Product 3 Image">
+                    <h3>Product 3</h3>
+                    <p>£20.00</p>
+                    <input type="number" class="quantity-input" value="1" min="1">
+                    <button class="add-to-cart" data-name="Product 3" data-price="20.00">Add to Cart</button>
+                </div>
+
+                <div class="product-item">
+                    <img src="images/tuna.png" alt="Product 3" aria-label="Product 3 Image">
+                    <h3>Product 3</h3>
+                    <p>£20.00</p>
+                    <input type="number" class="quantity-input" value="1" min="1">
+                    <button class="add-to-cart" data-name="Product 3" data-price="20.00">Add to Cart</button>
+                </div>
+
                 <div class="product-item">
                     <img src="images/tuna.png" alt="Product 3" aria-label="Product 3 Image">
                     <h3>Product 3</h3>
@@ -88,16 +114,6 @@
             </div>
         </div>
     </footer>
-    <!-- Sidebar -->
-    <div id="sidebar">
-        <div class="sidebar-content">
-            <span class="close-sidebar">&times;</span>
-            <h3>Shopping Cart</h3>
-            <ul id="cart-items">
-                <!-- Cart items will be added dynamically here -->
-            </ul>
-        </div>
-    </div>
-    <script src="js/shop.js"></script>
+    <script src="js/shop.js" defer></script>
 </body>
 </html>
