@@ -100,7 +100,7 @@ app.post('/login', (req, res) => {
 
 
 
-
+// Any post request sent to settings page will be redirected here to be used with the sql and make changes 
 app.post('/settings', (req, res) => {
     const { currentEmail, newEmail, currentPassword, newPassword } = req.body;
 
@@ -165,7 +165,7 @@ app.post('/settings', (req, res) => {
 // Path to the JSON file
 const filePath = path.join(__dirname, 'items.json');
 
-// Endpoint to receive and store item details
+// Endpoint to receive and store item details in json file
 app.post('/items', (req, res) => {
     const newItem = req.body;
 
@@ -180,7 +180,6 @@ app.post('/items', (req, res) => {
             items = JSON.parse(data);
         }
 
-        // Add the new item to the array
         items.push(newItem);
 
         // Write the updated data back to the JSON file
@@ -193,7 +192,7 @@ app.post('/items', (req, res) => {
     });
 });
 
-// Endpoint to get all items
+// Get request to get all items in json file
 app.get('/items', (req, res) => {
     fs.readFile(filePath, 'utf8', (err, data) => {
         if (err) {
@@ -206,6 +205,7 @@ app.get('/items', (req, res) => {
 
 
 
+// get reguest redirections
 app.get('/index', (req, res) => {
     res.sendFile(path.join(__dirname, 'public/index.html'));
 });

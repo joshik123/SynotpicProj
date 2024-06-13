@@ -63,8 +63,8 @@ header .search-bar input {
 }
 
 #cart-icon {
-    width: 60px; /* Increased cart icon size */
-    height: 60px; /* Increased cart icon size */
+    width: 60px;
+    height: 60px; 
     cursor: pointer;
 }
 
@@ -75,7 +75,7 @@ header .search-bar input {
     background-color: #ff6600;
     color: #fff;
     border-radius: 50%;
-    padding: 6px; /* Adjusted padding */
+    padding: 6px;
     font-size: 14px;
 }
 
@@ -253,16 +253,16 @@ header .search-bar input {
     padding: 20px;
     border: 1px solid #888;
     width: 80%;
-    max-width: 400px; /* Adjust max-width for smaller modal */
+    max-width: 400px; 
     border-radius: 8px;
-    text-align: center; /* Center align content */
+    text-align: center; 
 }
 
 .modal-content img {
-    max-width: 100%; /* Adjust image size */
+    max-width: 100%; 
     height: auto;
-    display: block; /* Center the image */
-    margin: 0 auto; /* Center the image */
+    display: block;
+    margin: 0 auto; 
 }
 
 .modal .close {

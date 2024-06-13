@@ -29,8 +29,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const donationForm = modal.querySelector('form');
         donationForm.addEventListener('submit', function(event) {
             event.preventDefault();
-            // Your form submission logic here
-            // This prevents the form from submitting and refreshing the page
+
         });
     } else {
         console.error('Error: One or more elements not found.');

@@ -1,6 +1,6 @@
 # Synoptic Project
 
-But/sell is a Node app to buy and sell items
+Charity is a Node app to buy and sell items and also donate to the charity
 ## Pre-Requisites
 
 Download [Node.JS](https://nodejs.org/en/download) and complete the install.
@@ -13,8 +13,6 @@ SynotpicProj/
     ├── node_modules
     ├── public/
     │   └── # This is for static pages visible to users
-    ├── src/
-    │   └── # This is for files that handle the server
     ├── app.js
     ├── package-lock.json
     ├── package.json
