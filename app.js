@@ -1,11 +1,12 @@
 
 const express = require('express');
-// const mysql = require('mysql');
+const mysql = require('mysql');
 const bcrypt = require('bcrypt');
 const bodyParser = require('body-parser');
 const path = require('path');
 const cors = require('cors');
 const fs = require('fs');
+const app = express();
 
 app.use(bodyParser.json());
 app.use(cors());
@@ -32,7 +33,7 @@ function generateUniqueID() {
     return uniqueID;
 }
 
-const app = express();
+// const app = express();
 const port = 3000;
 
 // Database connection
@@ -52,7 +53,7 @@ connection.connect(err => {
     }
     console.log('Connected to database as ID ' + connection.threadId);
 });
-
+// Storing user input into databse
 app.use(bodyParser.json());
 app.use(express.static('public'));
 app.post('/register', async (req, res) => {
@@ -70,7 +71,7 @@ connection.query(sql, [id, fullname, email, hashedPassword, phone], (error, resu
         res.json({ message: 'Registration successful!', userId: id });
     });
 });
-
+//Comparing user input to databse credentials
 app.post('/login', (req, res) => {
     const { email, password } = req.body;
 

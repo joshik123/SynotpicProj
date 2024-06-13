@@ -76,6 +76,20 @@ button:hover {
     background-color: #e64a19;
     transform: translateY(-2px);
 }
+.regi {
+    display: inline-block;
+    margin-top: 20px;
+    color: #ff5722;
+    text-decoration: none;
+    font-size: 14px;
+    transition: color 0.3s ease, text-shadow 0.3s ease;
+}
+
+.regi:hover {
+    color: #e64a19;
+    text-shadow: 0 0 5px rgba(255, 87, 34, 0.5);
+}
+
 
 form br {
     display: none;
