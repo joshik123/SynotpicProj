@@ -59,35 +59,35 @@ header .search-bar input {
 /* Donate Section Styling */
 #donate {
     background-color: #f9f9f9; /* Light background color */
-    padding: 80px 0; /* Increased padding for better spacing */
+    padding: 80px 0; 
     text-align: center;
 }
 
 #donate .container {
-    max-width: 800px; /* Limit content width */
-    margin: 0 auto; /* Center content horizontally */
+    max-width: 800px; 
+    margin: 0 auto;
 }
 
 #donate h2 {
-    font-size: 2.5rem; /* Larger font size for heading */
-    color: #333; /* Dark text color */
-    margin-bottom: 30px; /* Increased bottom margin for spacing */
+    font-size: 2.5rem; 
+    color: #333;
+    margin-bottom: 30px; 
 }
 
 #donate p {
-    font-size: 1.2rem; /* Slightly larger font size for paragraph */
-    color: #666; /* Slightly darker text color */
-    margin-bottom: 40px; /* Increased bottom margin for spacing */
+    font-size: 1.2rem; 
+    color: #666; 
+    margin-bottom: 40px;
 }
 
 #donate button {
-    padding: 15px 30px; /* Increased padding for button */
-    background-color: #007bff; /* Primary button color */
-    color: #fff; /* Text color */
-    border: none; /* Remove border */
-    border-radius: 5px; /* Rounded corners */
-    font-size: 1.2rem; /* Font size */
-    cursor: pointer; /* Cursor style */
+    padding: 15px 30px; 
+    background-color: #007bff; 
+    color: #fff; 
+    border: none;
+    border-radius: 5px;
+    font-size: 1.2rem; 
+    cursor: pointer;
     transition: background-color 0.3s; /* Smooth hover transition */
 }
 
@@ -97,9 +97,9 @@ header .search-bar input {
 
 /* Additional Styling */
 #donate .icon {
-    font-size: 3rem; /* Larger icon size */
-    margin-bottom: 20px; /* Increased bottom margin for spacing */
-    color: #007bff; /* Icon color */
+    font-size: 3rem;
+    margin-bottom: 20px;
+    color: #007bff;
 }
 /* Footer Styles */
 footer {

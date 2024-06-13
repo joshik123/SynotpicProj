@@ -83,7 +83,7 @@ form br {
 
 ::placeholder {
     color: #bbb;
-    opacity: 1; /* Firefox */
+    opacity: 1; 
 }
 
 @media (max-width: 400px) {

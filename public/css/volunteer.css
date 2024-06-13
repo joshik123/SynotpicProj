@@ -102,15 +102,15 @@ header .search-bar input {
     margin-top: 0;
     margin-bottom: 10px;
     color: #333;
-    border-bottom: 1px solid #ccc; /* Add border under the headings */
-    padding-bottom: 10px; /* Add space between the heading and content */
+    border-bottom: 1px solid #ccc; 
+    padding-bottom: 10px; 
 }
 
 .opportunity p,
 .benefit p {
     font-size: 1.1em;
     color: #666;
-    padding-top: 10px; /* Add space between the content and the border */
+    padding-top: 10px; 
 }
 
 .sign-up {
@@ -173,7 +173,7 @@ footer .container p {
 }
 
 .volunteer-header {
-    background-image: url('volunteer-header-bg.jpg'); /* Replace 'volunteer-header-bg.jpg' with your image path */
+    background-image: url('volunteer-header-bg.jpg'); 
     background-size: cover;
     background-position: center;
     color: #fff;
