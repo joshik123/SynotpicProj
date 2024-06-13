@@ -1,9 +1,14 @@
 
 const express = require('express');
-const mysql = require('mysql');
+// const mysql = require('mysql');
 const bcrypt = require('bcrypt');
 const bodyParser = require('body-parser');
 const path = require('path');
+const cors = require('cors');
+const fs = require('fs');
+
+app.use(bodyParser.json());
+app.use(cors());
 
 //const { v4: uuidv4 } = require('uuid');
 const crypto = require('crypto');
@@ -153,6 +158,48 @@ app.post('/settings', (req, res) => {
                 });
             });
         });
+    });
+});
+
+// Path to the JSON file
+const filePath = path.join(__dirname, 'items.json');
+
+// Endpoint to receive and store item details
+app.post('/items', (req, res) => {
+    const newItem = req.body;
+
+    // Read the existing data from the JSON file
+    fs.readFile(filePath, 'utf8', (err, data) => {
+        if (err && err.code !== 'ENOENT') {
+            return res.status(500).json({ error: 'Failed to read data' });
+        }
+
+        let items = [];
+        if (data) {
+            items = JSON.parse(data);
+        }
+
+        // Add the new item to the array
+        items.push(newItem);
+
+        // Write the updated data back to the JSON file
+        fs.writeFile(filePath, JSON.stringify(items, null, 2), (err) => {
+            if (err) {
+                return res.status(500).json({ error: 'Failed to save data' });
+            }
+            res.status(201).json(newItem);
+        });
+    });
+});
+
+// Endpoint to get all items
+app.get('/items', (req, res) => {
+    fs.readFile(filePath, 'utf8', (err, data) => {
+        if (err) {
+            return res.status(500).json({ error: 'Failed to read data' });
+        }
+        const items = data ? JSON.parse(data) : [];
+        res.json(items);
     });
 });
 

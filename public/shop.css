@@ -79,60 +79,205 @@ header .search-bar input {
     font-size: 14px;
 }
 
+/* Shop Section */
 #shop {
     padding: 60px 0;
+    background-color: #f4f4f4;
     text-align: center;
+}
+
+#shop .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+#shop h2 {
+    font-size: 2.5em;
+    margin-bottom: 40px;
+    color: #333;
 }
 
 .product-grid {
     display: flex;
-    flex-wrap: wrap;
+    gap: 20px;
     justify-content: center;
+    flex-wrap: wrap;
 }
 
 .product-item {
-    margin: 0 10px 20px;
-    padding: 20px;
     background-color: #fff;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    max-width: 300px;
     transition: transform 0.3s, box-shadow 0.3s;
 }
 
 .product-item:hover {
-    transform: translateY(-5px); /* Slight lift on hover */
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Darker shadow on hover */
+    transform: translateY(-10px);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
 }
 
 .product-item img {
     max-width: 100%;
-    border-radius: 8px;
+    border-radius: 10px 10px 0 0;
+    margin-bottom: 15px;
 }
 
 .product-item h3 {
-    margin: 10px 0;
-    font-size: 1.2em;
+    font-size: 1.5em;
+    margin: 15px 0;
+    color: #333;
 }
 
 .product-item p {
-    margin-bottom: 10px;
-    font-size: 1.1em;
+    font-size: 1.2em;
+    color: #777;
+    margin: 10px 0;
+}
+
+.quantity-input {
+    width: 60px;
+    padding: 5px;
+    margin: 10px 0;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    text-align: center;
 }
 
 .add-to-cart {
+    display: inline-block;
     padding: 10px 20px;
-    background-color: #ff6600;
+    background-color: #007bff;
     color: #fff;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
+    text-decoration: none;
+    border-radius: 5px;
     transition: background-color 0.3s;
 }
 
 .add-to-cart:hover {
-    background-color: #cc5200;
+    background-color: #0056b3;
 }
 
+/* Sidebar Styles */
+.sidebar {
+    position: fixed;
+    top: 25;
+    right: 0;
+    width: 300px;
+    height: 100%;
+    background-color: #fff;
+    box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1);
+    overflow-y: auto;
+    transform: translateX(100%);
+    transition: transform 0.3s ease-in-out;
+    z-index: 1000;
+}
+
+.sidebar.open {
+    transform: translateX(0);
+}
+
+.sidebar h2 {
+    text-align: center;
+    padding: 20px;
+    border-bottom: 1px solid #ddd;
+}
+
+.cart-items {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.cart-item {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+}
+
+.cart-item img {
+    max-width: 50px;
+    margin-right: 10px;
+}
+
+.cart-item-details {
+    flex: 1;
+}
+
+.total {
+    text-align: center;
+    padding: 20px;
+    border-top: 1px solid #ddd;
+}
+
+.buy-now-button {
+    display: block;
+    width: calc(100% - 40px);
+    margin: 20px;
+    padding: 10px;
+    background-color: #28a745;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    text-align: center;
+    cursor: pointer;
+}
+
+.buy-now-button:hover {
+    background-color: #218838;
+}
+
+/* Modal Styles */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 999;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.5);
+}
+
+.modal-content {
+    background-color: #fefefe;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    max-width: 400px; /* Adjust max-width for smaller modal */
+    border-radius: 8px;
+    text-align: center; /* Center align content */
+}
+
+.modal-content img {
+    max-width: 100%; /* Adjust image size */
+    height: auto;
+    display: block; /* Center the image */
+    margin: 0 auto; /* Center the image */
+}
+
+.modal .close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.modal .close:hover,
+.modal .close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
 
 /* Footer Styles */
 footer {
@@ -150,15 +295,11 @@ footer .container p {
 .social-media a {
     display: inline-block;
     margin: 0 10px;
+    color: #fff;
+    text-decoration: none;
+    font-size: 1.5em;
 }
 
-.social-media img {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    transition: transform 0.3s;
-}
-
-.social-media img:hover {
-    transform: scale(1.2);
+social-media a:hover {
+    color: #ff6600;
 }
